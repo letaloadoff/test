@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:is24HourView="true" />
+
+        <EditText
+            android:id="@+id/editLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_alarm_label" />
+
+        <CheckBox
+            android:id="@+id/checkVibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_vibrate" />
+
+        <CheckBox
+            android:id="@+id/checkSkipUi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_skip_ui" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_sun_mode" />
+
+        <RadioGroup
+            android:id="@+id/radioSunChoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radioExact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sun_mode_exact" />
+            <RadioButton
+                android:id="@+id/radioSunrise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sun_mode_sunrise" />
+            <RadioButton
+                android:id="@+id/radioSunset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sun_mode_sunset" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_offset_min" />
+            <EditText
+                android:id="@+id/editOffsetMinutes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="0" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_repeat_days" />
+
+        <LinearLayout
+            android:id="@+id/daysContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox android:id="@+id/daySun" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sun" />
+            <CheckBox android:id="@+id/dayMon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_mon" />
+            <CheckBox android:id="@+id/dayTue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_tue" />
+            <CheckBox android:id="@+id/dayWed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_wed" />
+            <CheckBox android:id="@+id/dayThu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_thu" />
+            <CheckBox android:id="@+id/dayFri" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_fri" />
+            <CheckBox android:id="@+id/daySat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/day_sat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_snooze_min" />
+            <EditText
+                android:id="@+id/editSnoozeMinutes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_difficulty" />
+            <Spinner
+                android:id="@+id/spinnerDifficulty"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonPickTone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_pick_ringtone" />
+
+        <Button
+            android:id="@+id/buttonSetAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_set_alarm" />
+
+    </LinearLayout>
+</ScrollView>

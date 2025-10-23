@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">AlarmSetter</string>
+	<string name="hint_alarm_label">Alarm label</string>
+	<string name="label_vibrate">Vibrate</string>
+	<string name="label_skip_ui">Skip Clock UI</string>
+	<string name="btn_set_alarm">Set Alarm</string>
+
+	<string name="title_sun_mode">Sunrise/Sunset</string>
+	<string name="sun_mode_exact">Exact time</string>
+	<string name="sun_mode_sunrise">Sunrise</string>
+	<string name="sun_mode_sunset">Sunset</string>
+	<string name="label_offset_min">Offset (min):</string>
+	<string name="label_repeat_days">Repeat Days</string>
+	<string name="day_sun">Sun</string>
+	<string name="day_mon">Mon</string>
+	<string name="day_tue">Tue</string>
+	<string name="day_wed">Wed</string>
+	<string name="day_thu">Thu</string>
+	<string name="day_fri">Fri</string>
+	<string name="day_sat">Sat</string>
+	<string name="label_snooze_min">Snooze (min):</string>
+	<string name="label_difficulty">Difficulty:</string>
+	<string name="btn_pick_ringtone">Pick Ringtone</string>
+
+	<string name="ring_answer_hint">Answer</string>
+	<string name="ring_dismiss">Dismiss</string>
+	<string name="ring_snooze">Snooze</string>
+	<string name="ring_try_again">Try again</string>
+</resources>
