@@ -1,108 +1,91 @@
-# Automower 440 iQ — Cutting Frame 3D Print Models
+# Automower 440 iQ — Part 547656201 (FRAME) 3D Print Model
 
-Parametric starting models for the **Blade Motor & Cutting Equipment** parts on the [Husqvarna 440 iQ support page](https://www.husqvarna.com/us/support/automower-440-iq/?highlightId=547656201-11).
+Parametric model for **OEM 547 65 62-01** (`547656201`), highlighted on the [Husqvarna 440 iQ support page](https://www.husqvarna.com/us/support/automower-440-iq/?highlightId=547656201-11).
 
-Husqvarna does **not** publish OEM CAD/STL for these parts. These files are **estimated templates** you can measure, tune, and modify in OpenSCAD or your slicer.
+## What this part actually is
 
-## Which part is highlighted?
+Husqvarna's product text calls it a **"Frame Sealing Bellow"**, but the official IPL drawing shows a **thin spoked guard ring** above the cutting disc — not an accordion rubber boot.
 
-Your link (`highlightId=547656201-11`) points to:
+| Source | Name / callout |
+|--------|----------------|
+| IPL diagram | **FRAME** — callout **#13** |
+| Support-page highlight URL | `547656201-11` (internal map id; same part) |
+| Spare-parts page | "FRAME Sealing Bellow" |
 
-| Item | OEM part | Name | Material |
-|------|----------|------|----------|
-| **Primary (your link)** | **547 65 62-01** (`547656201`) | Frame sealing bellow | Flexible rubber (print **TPU 95A**) |
-| Related structural part | **599 31 82-01** (`599318201`) | Motor housing frame (IPL ref 15) | Rigid plastic (print **PETG** or **ASA**) |
+Official diagram image (from Husqvarna spare-parts data):
 
-On the shared P16 cutting platform (405X / 415X / 440 iQ), IPL ref **15** is the rigid **FRAME** (`599318201`). Ref **11** on the 405X IPL is the motor assembly; the 440 iQ page uses ref **11** for part `547656201`.
+- Full sheet: `reference/ipl-blade-motor-UN-778162.png` (downloaded from Husqvarna CDN)
+- Close-up of callout #13: `reference/part13-frame-closeup.png`
+- Annotated overview: `reference/blade-motor-annotated.png`
 
-**Important:** The highlighted part is a **flexible seal**, not the square plastic motor frame. If you want to modify mounting geometry, you likely want `frame_599318201.scad`. If you want to replace or stiffen the rubber boot, use `bellow_547656201.scad`.
+The part sits in the blade stack above cutting disc **599674701** (240 mm) and mates to the hub of disc **#6** in the diagram.
 
 ## Files
 
-| File | Description |
-|------|-------------|
-| `bellow_547656201.scad` | Parametric accordion bellow (OEM 547656201) |
-| `frame_599318201.scad` | Parametric motor housing plate (OEM 599318201) |
-| `generate_stl.py` | Python STL exporter (no OpenSCAD required) |
-| `output/*.stl` | Pre-generated estimated meshes |
+| File | Purpose |
+|------|---------|
+| `frame_547656201.scad` | **Main model** — spoked guard frame (edit variables at top) |
+| `generate_stl.py` | Python STL exporter |
+| `output/frame_547656201_estimated.stl` | Pre-generated mesh |
+| `frame_599318201.scad` | *Different part* — square motor plate from 405X/415X platform (not 547656201) |
+| `reference/` | IPL diagram crops for visual reference |
 
 ## Quick start
 
-### Option A — OpenSCAD (recommended for edits)
+### OpenSCAD (recommended)
 
-1. Install [OpenSCAD](https://openscad.org/).
-2. Open the `.scad` file for the part you need.
-3. Adjust the variables at the top (dimensions in mm).
-4. Render (`F6`) → Export STL.
+1. Open `frame_547656201.scad`
+2. Adjust dimensions at the top (mm)
+3. Render (`F6`) → Export STL
 
-### Option B — Python
+### Python
 
 ```bash
-pip install numpy-stl
+pip install -r requirements.txt
 python3 generate_stl.py
+python3 generate_stl.py --outer-d 198 --center-bore-d 42
 ```
 
-Custom sizes:
+## Default dimensions (estimated — calibrate!)
 
-```bash
-python3 generate_stl.py --frame-plate-size 112 --bellow-height 30 --bellow-top-id 54
-```
+Derived from IPL diagram **UN-778162** proportions vs. known 240 mm cutting disc:
 
-## Calibrating dimensions (required for fit)
+| Variable | Default | What to measure on OEM part |
+|----------|---------|------------------------------|
+| `outer_d` | 196 mm | Outer rim diameter |
+| `rim_width` | 10 mm | Outer annulus width |
+| `plate_thick` | 3.0 mm | Overall thickness |
+| `hub_od` | 72 mm | Central hub outer diameter |
+| `center_bore_d` | 40 mm | Center shaft bore |
+| `hub_bore_pcd` / `hub_bore_d` | 52 / 4.5 mm | Bolt circle + hole size |
+| `arm_count` | 4 | Number of spokes (fixed at 4 on OEM) |
+| `arm_root_width` / `arm_tip_width` | 24 / 12 mm | Spoke width at hub / rim |
 
-Measure your **OEM part** with calipers and update the SCAD variables:
-
-### Frame (`599318201`)
-
-Known retailer packaging: **110 × 110 × 9 mm**, ~25 g.
-
-| Variable | Default | Measure |
-|----------|---------|---------|
-| `plate_size` | 110 mm | Outer square width/length |
-| `plate_thick` | 9 mm | Plate thickness |
-| `motor_bore_d` | 48 mm | Central motor opening |
-| `disc_screw_pcd` | 35 mm | Bolt-circle diameter for 3 disc screws |
-| `disc_screw_d` | 4.4 mm | Clearance for M4 (590 50 87-01) |
-| `corner_inset` / slots | 10 / 12 / 6 mm | Chassis mounting slots |
-
-### Bellow (`547656201`)
-
-No published OEM dimensions — defaults are **estimates**.
-
-| Variable | Default | Measure |
-|----------|---------|---------|
-| `top_id` | 52 mm | Inner diameter at motor side |
-| `bottom_id` | 58 mm | Inner diameter at frame side |
-| `height` | 28 mm | Compressed installed height |
-| `wall` | 2.0 mm | Wall thickness (TPU) |
-| `conv_loops` | 5 | Number of accordion folds |
-
-**Tip:** Photograph the part next to a ruler, then iterate one dimension at a time.
+**You must measure your OEM part** (or 3D-scan it) before printing for final fit. Husqvarna does not publish CAD.
 
 ## Print settings
 
-| Part | Material | Notes |
-|------|----------|-------|
-| Frame `599318201` | PETG or ASA | 3 perimeters, 30% infill, print flat on bed |
-| Bellow `547656201` | TPU 95A | Slow (25–35 mm/s), no fan, 0.2 mm layers, vase/standard |
+| Setting | Value |
+|---------|-------|
+| Material | PETG or ASA |
+| Orientation | Flat on the bed (hub face down) |
+| Layers | 0.2 mm |
+| Perimeters | 3+ |
+| Infill | 25–35% |
 
-## Related OEM parts (440 iQ / P16 platform)
+For a flexible replacement closer to the OEM rubber, try TPU — but the diagram geometry is a rigid spoked ring, not a bellow.
 
-| Part No. | Description |
-|----------|-------------|
-| 599 52 13-01 | Cutting module assembly |
-| 547 05 29-01 | Cutting motor assembly (iQ service part) |
-| 599 31 82-01 | Frame (structural) |
-| 547 65 62-01 | Frame sealing bellow |
-| 599 67 47-01 | Cutting disc (240 mm) |
-| 598 79 49-01 | Skid plate (Ø211 mm) |
+## Related parts (same IPL)
 
-## Safety / warranty
+| Callout | Part No. | Name |
+|---------|----------|------|
+| 6 | 599674701 | Cutting disc (240 mm) |
+| 7 | 598794901 | Skid plate (Ø211 mm) |
+| 13 | **547656201** | **FRAME** (this model) |
+| 19 | 547053301 | Worm gear |
+| 21 | 548414101 | Cutting module |
+| 23 | 547052701 | Housing |
 
-Modifying cutting-system seals or frames can affect **IPX5** sealing, blade balance, and **warranty**. Test carefully before extended mowing.
+## Safety
 
-## Sources
-
-- [440 iQ support / spare parts](https://www.husqvarna.com/us/support/automower-440-iq/)
-- [405X IPL (P16 cutting module)](https://www-static-nw.husqvarna.com/hbd/tdrdownload/v2/pub000081076/doc000147125/IPL/EUIWzyYcuKYBrN73tt0rQv898uc?httproute=True)
-- Frame `599318201` packaging: 110×110×9 mm (roboticmowing.com.au / wolfswinkel.at)
+Modifying cutting-system parts can affect blade balance, sealing, and warranty. Test carefully before extended use.
