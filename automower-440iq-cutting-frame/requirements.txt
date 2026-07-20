@@ -1,0 +1,5 @@
+# The model is generated from frame_547656201.scad via OpenSCAD.
+# Install OpenSCAD (no Python packages required):
+#   Debian/Ubuntu:  sudo apt-get install openscad
+#   macOS:          brew install --cask openscad
+#   Windows/other:  https://openscad.org/downloads.html
